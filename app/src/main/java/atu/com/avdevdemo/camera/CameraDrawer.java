@@ -220,6 +220,14 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
         this.oneShotCallback=oneShotCallback;
     }
 
+    public void setPreviewSize(int width, int height) {
+        if(this.mPreviewWidth!=width||this.mPreviewHeight!=height){
+            this.mPreviewWidth=width;
+            this.mPreviewHeight=height;
+            this.isPreviewSizeChanged=true;
+        }
+    }
+
     //需要回调，则缩放图片到指定大小，读取数据并回调
     private void callbackIfNeeded() {
         if (mFrameCallback != null && (oneShotCallback || isKeepCallback)) {
@@ -271,4 +279,6 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
         GLES20.glDeleteFramebuffers(1, fFrame, 0);
         GLES20.glDeleteTextures(1, fTexture, 0);
     }
+
+
 }

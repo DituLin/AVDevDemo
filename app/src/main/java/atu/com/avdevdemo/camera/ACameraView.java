@@ -20,7 +20,7 @@ public class ACameraView extends GLSurfaceView implements GLSurfaceView.Renderer
     private ACamera mCamera;
     private boolean isSetParm=false;
     private int dataWidth=0,dataHeight=0;
-    private int cameraId=1;
+    private int cameraId=0;
     private FrameCallback mFrameCallback;
 
     public ACameraView(Context context) {
@@ -112,6 +112,11 @@ public class ACameraView extends GLSurfaceView implements GLSurfaceView.Renderer
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         mDrawer.onSurfaceCreated(gl,config);
+        if(!isSetParm){
+            open(cameraId);
+            stickerInit();
+        }
+        mDrawer.setPreviewSize(dataWidth,dataHeight);
     }
 
     @Override
